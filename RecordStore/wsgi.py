@@ -1,5 +1,5 @@
 """
-WSGI config for ComIT_RecordStore project.
+WSGI config for RecordStore project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ComIT_RecordStore.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'RecordStore.settings')
 
 application = get_wsgi_application()
