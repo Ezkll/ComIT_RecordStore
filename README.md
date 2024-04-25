@@ -18,4 +18,10 @@ Terminal > git commit -m "setting up virtual environment"
 Select Python version in VSCode (lower right) Pipenv Python
 Add an item
 
+### Create App
+python manage.py startapp inventory
+RecordStore settings.py > INSTALLED APPS > 'inventory'
+python manage.py makemigrations
+python manage.py migrate
+
 ### URLS.PY Steps
