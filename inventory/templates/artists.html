@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Artists</title>
+  </head>
+  <body>
+    <h1>Welcome to the Artist Page</h1>
+    <p>This is a basic page for displaying information about an artist.</p>
+    <h1>Record Store</h1>
+    <p>
+      <ul>
+      {% for artist in artists %}
+        <li>{{ artist.name }}</li>
+      {% endfor %}
+      </ul>
+    </p>
+  </body>
+</html>

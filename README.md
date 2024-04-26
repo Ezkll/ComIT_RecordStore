@@ -24,4 +24,31 @@ RecordStore settings.py > INSTALLED APPS > 'inventory'
 python manage.py makemigrations
 python manage.py migrate
 
+
+### Using the Database
+admin.py
+Create classes for your models as admin
+```class AlbumAdmin(admin.ModelAdmin):
+    """Admin interface customization for the Album model."""
+
+class ArtistAdmin(admin.ModelAdmin):
+    """Admin interface customization for the Artist model."""
+```
+Register those admin classes
+```
+admin.site.register(Artist, ArtistAdmin)
+admin.site.register(Album, AlbumAdmin)
+```
+Create a SuperUser
+```
+python manage.py createsuperuser
+```
+
+### QuerySets
+
+
 ### URLS.PY Steps
+
+
+
+
