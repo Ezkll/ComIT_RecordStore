@@ -56,7 +56,20 @@ Register Pages
 {% include 'artist_list_item.html' with artist=artist %}
 ```
 #### Template Inheritance
+using base.html
+creating a template folder on root
+moving base.html to template folder in root
+modifying settings.py and adding 'templates' in the DIR section
 
+#### Bootstrap
+Download CSS and Javascript
+Create a folder for the bootstrap retain the version number
+modify settings.py and add
+```
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+```
 ### URLS.PY Steps
 
 
