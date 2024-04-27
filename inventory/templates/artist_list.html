@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Artist List{% endblock %}  
-{% block header%}<h1>Artist List</h1>{%endblock%}
 {% block main%}
 
       {% if artists %}
       <ul>
       {% for artist in artists %}
-      {% include 'artist_list_item.html' %}
+      <li>{{artist.name}}</li>
       {% endfor %}
       </ul>
       {% else %}
-      <p>No artists found.</p>
+      <p>No artists found</p>
       {% endif %}
 
 {% endblock %}    

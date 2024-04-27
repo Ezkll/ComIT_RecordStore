@@ -22,13 +22,9 @@ from django.urls import path, include
 
 from inventory.views import ArtistView
 
-                 
-
 urlpatterns = [
-    
-    path('admin/', admin.site.urls),
-    path('inventory/', include('inventory.urls')),
     path('', ArtistView.as_view(), name='artist-list'),
+    path('admin/', admin.site.urls),
+    path('inventory/', include('inventory.urls')),   
     
- 
 ]

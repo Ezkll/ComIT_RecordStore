@@ -1,0 +1,23 @@
+{% extends 'artist_list.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+<!-- You can override the header block here if needed -->
+{% endblock %}
+
+{% block main %}
+{{ block.super }}
+home
+{% if artists %}
+<ul>
+{% for artist in artists %}
+<li>{{artist.name}}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No artists found.home</p>
+{% endif %}
+
+{% endblock %}
+

@@ -1,10 +1,13 @@
+from turtle import home
 from django.urls import path
-from inventory.views import ArtistView
+from inventory.views import AlbumView, ArtistView
 
                  
 urlpatterns = [
    
-    path('', ArtistView.as_view(), name='artist-list'),
+    
+    path('artists/', ArtistView.as_view(), name='artist-list'),
+    path('albums/', AlbumView.as_view(), name='albums'),
     
 ]
 
