@@ -10,5 +10,5 @@ class ArtistView(View):
         context = {
             'artists': artists
         }       
-        return render(request = request, template_name='artists.html', context=context)
+        return render(request = request, template_name='artist_list.html', context=context)
                       

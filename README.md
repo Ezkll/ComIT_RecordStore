@@ -47,6 +47,16 @@ python manage.py createsuperuser
 ### QuerySets
 
 
+### Templates
+Create HTML Templates
+Register Pages
+
+#### Using Include Tags
+``` 
+{% include 'artist_list_item.html' with artist=artist %}
+```
+#### Template Inheritance
+
 ### URLS.PY Steps
 
 

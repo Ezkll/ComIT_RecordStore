@@ -4,7 +4,7 @@ from inventory.views import ArtistView
                  
 urlpatterns = [
    
-    path('artists/', ArtistView.as_view(), name='artists'),
+    path('', ArtistView.as_view(), name='artist-list'),
     
 ]
 

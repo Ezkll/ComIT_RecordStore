@@ -4,14 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{%block title%}{%endblock%} | Record Store</title>
-    
+
   </head>
-  <body>
-    <h1>Record Store</h1>
-    <p>
-      <ul>
-      
-      </ul>
-    </p>
+  <body> 
+    {%block content%}
+    <nav>
+      <menu>
+        {% block menu%} Menu Placeholder {%endblock%}
+      </menu>
+    </nav>
+    <main>
+      {% block header%}<h1>Header Placehodler</h1>{%endblock%}
+      {% block main%} <p>Content</p> {%endblock%}
+    </main>
+    <footer>
+      {% block footer%} <p>Footer</p> {%endblock%}
+    </footer>
+    {%endblock%}
   </body>
 </html>
