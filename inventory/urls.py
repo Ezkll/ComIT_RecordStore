@@ -6,7 +6,7 @@ urlpatterns = [
     path("artists/", ArtistListView.as_view(), name="artist-list"),
     path("albums/", AlbumListView.as_view(), name="albums"),
     path(
-        "artists/<uuid:artist_id>/", ArtistDetailView.as_view(), name="artist-details"
+        "<uuid:pk>/", ArtistDetailView.as_view(), name="artist-detail"
     ),
 ]
 

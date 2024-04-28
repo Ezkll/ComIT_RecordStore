@@ -70,7 +70,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 ```
-####
+#### TemplateView
+From 
+```
     def get(self, request: HttpRequest):
         
         artists = Artist.objects.all()
@@ -91,4 +93,40 @@ STATICFILES_DIRS = [
         context = {
             'artist': artist
         }
-        return render(request = request, template_name='artist_details.html', context=context)
+        return render(request = request, template_name='artist_details.html', context=context).
+```
+To
+```
+class ArtistListView(TemplateView):
+    template_name = "artist_list.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["artists"] = Artist.objects.all()
+        return context
+
+
+class AlbumListView(TemplateView):
+    template_name = "album_list.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["albums"] = Album.objects.all()
+        return context
+
+
+class ArtistDetailView(TemplateView):
+    template_name = "artist_details.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["artist"] = Artist.objects.get(pk=self.kwargs["artist_id"])
+        return context
+```
+#### ListView
+
+#### DetailView
+
+TemplateView, ListView, DetailView, Pagination
+
+

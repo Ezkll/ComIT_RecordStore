@@ -1,16 +1,13 @@
 from inventory.models import Album, Artist
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from typing import Any
 
 
 # Create your views here.
-class ArtistListView(TemplateView):
+class ArtistListView(ListView):
     template_name = "artist_list.html"
-
-    def get_context_data(self, **kwargs) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context["artists"] = Artist.objects.all()
-        return context
+    model = Artist
+    paginate_by = 2
 
 
 class AlbumListView(TemplateView):
@@ -22,10 +19,12 @@ class AlbumListView(TemplateView):
         return context
 
 
-class ArtistDetailView(TemplateView):
-    template_name = "artist_details.html"
+class ArtistDetailView(DetailView):
+    model = Artist
+    
+    # template_name = "artist_details.html"
 
-    def get_context_data(self, **kwargs) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context["artist"] = Artist.objects.get(pk=self.kwargs["artist_id"])
-        return context
+    # def get_context_data(self, **kwargs) -> dict[str, Any]:
+    #     context = super().get_context_data(**kwargs)
+    #     context["artist"] = Artist.objects.get(pk=self.kwargs["artist_id"])
+    #     return context
