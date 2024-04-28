@@ -5,7 +5,7 @@
       {% if artists %}
       <ul>
       {% for artist in artists %}
-      <li>{{artist.name}}</li>
+      {% include 'artist_list_item.html' %}
       {% endfor %}
       </ul>
       {% else %}

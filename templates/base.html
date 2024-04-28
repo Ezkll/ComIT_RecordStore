@@ -10,8 +10,8 @@
   </head>
   <body> 
     {%block content%}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-primary-subtle sticky-top">
+      <div class="container">
       <a class="navbar-brand" href="{% url 'artist-list' %}">Record Store</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,13 +28,17 @@
       </div>
       </div>
     </nav>
-    <main>
+    <main class="container">
       
       {% block main%} <p>Content</p> {%endblock%}
     </main>
     <footer>
-      {% block footer%} <p>Footer</p> {%endblock%}
-    </footer>
+      <div class="bg-primary-subtle text-lg-start fixed-bottom">
+        <div class="container text-start text-wrap">
+      <p>&copy; 2024 Record Store. All rights reserved.</p>
+      </div>
+      </div>
+  </footer>
     {%endblock%}
     <script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.min.js' %}"></script>
 

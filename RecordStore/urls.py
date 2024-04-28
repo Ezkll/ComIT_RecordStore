@@ -20,10 +20,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path, include
 
-from inventory.views import ArtistView
+from inventory.views import ArtistListView
 
 urlpatterns = [
-    path('', ArtistView.as_view(), name='artist-list'),
+    path('', ArtistListView.as_view(), name='artist-list'),
     path('admin/', admin.site.urls),
     path('inventory/', include('inventory.urls')),   
     
