@@ -3,13 +3,19 @@
 {% block main%}
 
       {% if artists %}
-      <ul>
-      {% for artist in artists %}
-      {% include 'artist_list_item.html' %}
-      {% endfor %}
-      </ul>
+      <div class="container">
+        <div class="row">
+          {% for artist in artists %}
+            <div class="col-md-4">
+              {% include 'artist_list_item.html' %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
       {% else %}
-      <p>No artists found</p>
+      <div class="container">
+        <p class="text-center">No artists found</p>
+      </div>
       {% endif %}
 
-{% endblock %}    
+{% endblock %}

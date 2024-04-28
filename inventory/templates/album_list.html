@@ -4,13 +4,21 @@
 {% block main %}
 
 {% if albums %}
-<ul>
-{% for album in albums %}
-  <li>{{ album.title }} by {{ album.artist.name }}</li>
-{% endfor %}
-</ul>
+<div class="container">
+  <div class="row">
+    {% for album in albums %}
+      <div class="col-md-4">
+        {{ album.title }} by {{ album.artist.name }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% else %}
-<p>No albums found.</p>
+<div class="container">
+  <p class="text-center">No albums found</p>
+</div>
 {% endif %}
 
 {% endblock %}
+
+

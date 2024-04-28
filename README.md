@@ -47,7 +47,7 @@ python manage.py createsuperuser
 ### QuerySets
 
 
-### Templates
+### Templates and URLS.PY
 Create HTML Templates
 Register Pages
 
@@ -70,8 +70,25 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 ```
-### URLS.PY Steps
+####
+    def get(self, request: HttpRequest):
+        
+        artists = Artist.objects.all()
+        context = {
+            'artists': artists
+        }       
+        return render(request = request, template_name='artist_list.html', context=context)
 
-
-
-
+  def get(self, request: HttpRequest):
+        albums = Album.objects.all()
+        context = {
+            'albums': albums
+        }
+        return render(request = request, template_name='album_list.html', context=context)
+                      
+    def get(self, request: HttpRequest, artist_id):
+        artist = Artist.objects.get(pk=artist_id)
+        context = {
+            'artist': artist
+        }
+        return render(request = request, template_name='artist_details.html', context=context)

@@ -1,14 +1,13 @@
 from django.urls import path
 from inventory.views import AlbumListView, ArtistDetailView, ArtistListView
 
-                 
+
 urlpatterns = [
-   
-    
-    path('artists/', ArtistListView.as_view(), name='artist-list'),
-    path('albums/', AlbumListView.as_view(), name='albums'),
-    path('artists/<str:artist_id>/', ArtistDetailView.as_view(), name='artist-details'),
-    
+    path("artists/", ArtistListView.as_view(), name="artist-list"),
+    path("albums/", AlbumListView.as_view(), name="albums"),
+    path(
+        "artists/<uuid:artist_id>/", ArtistDetailView.as_view(), name="artist-details"
+    ),
 ]
 
 # URL will be inventory/home/ because of the include('inventory.urls') in RecordStore/urls.py

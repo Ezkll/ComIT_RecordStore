@@ -1,30 +1,31 @@
-from django.http import HttpRequest
-from django.shortcuts import render
-from django.views import View
 from inventory.models import Album, Artist
+from django.views.generic import TemplateView
+from typing import Any
+
 
 # Create your views here.
-class ArtistListView(View):
-    def get(self, request: HttpRequest):
-        
-        artists = Artist.objects.all()
-        context = {
-            'artists': artists
-        }       
-        return render(request = request, template_name='artist_list.html', context=context)
+class ArtistListView(TemplateView):
+    template_name = "artist_list.html"
 
-class AlbumListView(View):
-    def get(self, request: HttpRequest):
-        albums = Album.objects.all()
-        context = {
-            'albums': albums
-        }
-        return render(request = request, template_name='album_list.html', context=context)
-                      
-class ArtistDetailView(View):
-    def get(self, request: HttpRequest, artist_id):
-        artist = Artist.objects.get(pk=artist_id)
-        context = {
-            'artist': artist
-        }
-        return render(request = request, template_name='artist_details.html', context=context)
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["artists"] = Artist.objects.all()
+        return context
+
+
+class AlbumListView(TemplateView):
+    template_name = "album_list.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["albums"] = Album.objects.all()
+        return context
+
+
+class ArtistDetailView(TemplateView):
+    template_name = "artist_details.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["artist"] = Artist.objects.get(pk=self.kwargs["artist_id"])
+        return context
