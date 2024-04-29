@@ -5,7 +5,7 @@ from django.db import models
 class Artist(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    bio = models.TextField()
+    bio = models.TextField(max_length=1000)
     def __str__(self):
         return self.name
     

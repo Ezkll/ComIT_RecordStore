@@ -17,6 +17,18 @@ Add Artist
   <form method="post">
     {% csrf_token %}
     <div class="form-group">
+      {{form}}
+  </div>
+  <div class="form-group">
+      {% if artist %}
+      <button type="submit" class="btn btn-primary btn-lg btn-block rounded-pill">Save Changes</button>
+      {% else %}
+      <button type="submit" class="btn btn-primary btn-lg btn-block rounded-pill">Add Artist</button>
+      {% endif %}
+  </div>
+  
+  
+    {% comment %} <div class="form-group">
         <label for="artist-name">Artist Name:</label>
         <input type="text" id="artist-name" name="artist-name" class="form-control" placeholder="Enter Artist Name" value= "{% if artist %}{{artist.name}}{% endif %}">
     </div>
@@ -29,7 +41,7 @@ Add Artist
       <button type="submit" class="btn btn-primary">Save Changes</button>
          {% else %}
          <button type="submit" class="btn btn-primary">Add Artist</button>
-        {% endif %}
+        {% endif %} {% endcomment %}
 
     </div>
   </form>

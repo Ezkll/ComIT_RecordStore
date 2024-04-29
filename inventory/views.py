@@ -4,6 +4,7 @@ from django.views import View
 from inventory.models import Album, Artist
 from django.views.generic import TemplateView, ListView, DetailView
 from typing import Any
+from inventory.forms.artist_forms import ArtistForm
 
 
 # Create your views here.
@@ -28,12 +29,14 @@ class ArtistDetailView(DetailView):
 
 class CreateArtistView(View):
     def get(self, request):
-        context = {"artist": None}
+        artist_form = ArtistForm()
+        context = {"form": artist_form}
+        # context = {"artist": None}
         return render(request, "edit_artist.html", context)
 
     def post(self, request: HttpRequest):
-        name = request.POST.get("artist-name")
-        bio = request.POST.get("artist-bio")
+        name = request.POST.get("name")
+        bio = request.POST.get("bio")
 
         if name:
             new_artist = Artist.objects.create(name=name, bio=bio)
@@ -48,13 +51,30 @@ class UpdateArtistView(View):
         artist = None
         if pk:
             artist = get_object_or_404(Artist, pk=pk)
-        context = {"artist": artist}
+            form = ArtistForm(
+                initial=artist.__dict__
+            )  # create form instance with initial data
+        else:
+            form = ArtistForm()
+        context = {"artist": artist, "form": form}  # pass form to context
         return render(request, "edit_artist.html", context)
 
     def post(self, request, pk):
         artist = get_object_or_404(Artist, pk=pk)
-        artist.name = request.POST.get("artist-name")
-        artist.bio = request.POST.get("artist-bio")
-        artist.save()
+        form = ArtistForm(request.POST)  # bind form with POST data
+        if form.is_valid():
+            # manually update the artist instance with the form data
+            for field, value in form.cleaned_data.items():
+                setattr(artist, field, value)
+            artist.save()
+            return redirect("artist-detail", artist.id)
+        else:
+            context = {"artist": artist, "form": form}  # pass form to context
+            return render(request, "edit_artist.html", context)
 
-        return redirect("artist-detail", artist.id)
+
+class DeleteArtistView(View):
+    def post(self, request, pk):
+        artist = get_object_or_404(Artist, pk=pk)
+        artist.delete()
+        return redirect("artist-list")

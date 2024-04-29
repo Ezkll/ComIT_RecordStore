@@ -5,5 +5,12 @@
     <h3>{{artist.name}}</h3>
     {{artist.bio}}
 </p>
-<a href="{% url 'edit-artist' artist.id %}">Edit</a>
-{% endblock %}    
+<div class="d-flex">
+    <a href="{% url 'edit-artist' artist.id %}" class="btn btn-primary mr-2">Edit</a>
+    <form method="post" action="{% url 'delete-artist' artist.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    </form>
+</div>
+
+{% endblock %} 
