@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Artist List{% endblock %}  
+{% block main%}
+<p>
+      {% if artist_list %}
+      <div class="container">
+        <div class="row">
+            {% for artist in artist_list|dictsort:"name" %}
+            <div class="col-md-4">
+              {% include 'artist_list_item.html' %}
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+      {% else %}
+      <div class="container">
+        <p class="text-center">No artists found</p>
+      </div>
+      {% endif %}
+</p>
+<div class="container ">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First">
+          <span aria-hidden="true">«</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">Previous</span>
+        </a>
+      </li>
+    {% endif %}
+    <li class="page-item disabled">
+      <span class="page-link">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+    </li>
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">Next</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+          <span aria-hidden="true">»</span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</div>
+
+{% endblock %}
