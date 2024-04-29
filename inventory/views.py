@@ -1,3 +1,6 @@
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views import View
 from inventory.models import Album, Artist
 from django.views.generic import TemplateView, ListView, DetailView
 from typing import Any
@@ -7,7 +10,7 @@ from typing import Any
 class ArtistListView(ListView):
     template_name = "artist_list.html"
     model = Artist
-    paginate_by = 2
+    paginate_by = 12
 
 
 class AlbumListView(TemplateView):
@@ -21,10 +24,37 @@ class AlbumListView(TemplateView):
 
 class ArtistDetailView(DetailView):
     model = Artist
-    
-    # template_name = "artist_details.html"
 
-    # def get_context_data(self, **kwargs) -> dict[str, Any]:
-    #     context = super().get_context_data(**kwargs)
-    #     context["artist"] = Artist.objects.get(pk=self.kwargs["artist_id"])
-    #     return context
+
+class CreateArtistView(View):
+    def get(self, request):
+        context = {"artist": None}
+        return render(request, "edit_artist.html", context)
+
+    def post(self, request: HttpRequest):
+        name = request.POST.get("artist-name")
+        bio = request.POST.get("artist-bio")
+
+        if name:
+            new_artist = Artist.objects.create(name=name, bio=bio)
+            return redirect("artist-detail", new_artist.id)
+        else:
+            # Handle the case when the name is empty
+            return HttpResponse("Name cannot be empty.")
+
+
+class UpdateArtistView(View):
+    def get(self, request, pk=None):
+        artist = None
+        if pk:
+            artist = get_object_or_404(Artist, pk=pk)
+        context = {"artist": artist}
+        return render(request, "edit_artist.html", context)
+
+    def post(self, request, pk):
+        artist = get_object_or_404(Artist, pk=pk)
+        artist.name = request.POST.get("artist-name")
+        artist.bio = request.POST.get("artist-bio")
+        artist.save()
+
+        return redirect("artist-detail", artist.id)

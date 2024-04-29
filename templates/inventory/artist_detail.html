@@ -5,4 +5,5 @@
     <h3>{{artist.name}}</h3>
     {{artist.bio}}
 </p>
+<a href="{% url 'edit-artist' artist.id %}">Edit</a>
 {% endblock %}    

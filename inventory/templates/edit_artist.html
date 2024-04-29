@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if artist %}
+Edit Artist
+{% else %}
+Add Artist
+{% endif %}
+{%endblock%}
+{% block main %}
+  {% if artist %}
+  <h1 class="display-7">Edit Artist</h1>
+  {% else %}
+  <h1 class="display-7">Add Artist</h1>
+  {% endif %}
+  
+  
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="artist-name">Artist Name:</label>
+        <input type="text" id="artist-name" name="artist-name" class="form-control" placeholder="Enter Artist Name" value= "{% if artist %}{{artist.name}}{% endif %}">
+    </div>
+    <div class="form-group">
+        <label for="artist-bio">Artist Bio:</label>
+        <textarea id="artist-bio" name="artist-bio" class="form-control" placeholder="Enter Artist Bio" >{% if artist %}{{artist.bio}}{% endif %}</textarea>
+    </div>
+    <div class="form-group">
+      {%if artist %}
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+         {% else %}
+         <button type="submit" class="btn btn-primary">Add Artist</button>
+        {% endif %}
+
+    </div>
+  </form>
+{% endblock %}

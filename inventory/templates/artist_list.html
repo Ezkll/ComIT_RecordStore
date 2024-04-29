@@ -5,11 +5,11 @@
       {% if artist_list %}
       <div class="container">
         <div class="row">
-          {% for artist in artist_list %}
+            {% for artist in artist_list|dictsort:"name" %}
             <div class="col-md-4">
-              {% include 'artist_list_item.html'%}
+              {% include 'artist_list_item.html' %}
             </div>
-          {% endfor %}
+            {% endfor %}
         </div>
       </div>
       {% else %}

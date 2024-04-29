@@ -127,6 +127,11 @@ class ArtistDetailView(TemplateView):
 
 #### DetailView
 
-TemplateView, ListView, DetailView, Pagination
+#### Form
+
+#### Create
+
+#### Edit
+
 
 
