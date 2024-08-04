@@ -5,24 +5,24 @@
 
 ### Documenting Steps
 
-Create a Repository in GitHub
-Clone Repository
-Terminal > pipenv --python 3.12
-Terminal > pipenv install Django
-Terminal > pipenv shell
-Terminal > django-admin startproject LetraTo ./
-Setup Run and Debug (Python > Django > Manage.py)
-Press F5 to run local server
-Terminal > git add .
-Terminal > git commit -m "setting up virtual environment"
-Select Python version in VSCode (lower right) Pipenv Python
-Add an item
+Create a Repository in GitHub </br>
+Clone Repository </br>
+Terminal > pipenv --python 3.12 </br>
+Terminal > pipenv install Django </br>
+Terminal > pipenv shell </br>
+Terminal > django-admin startproject LetraTo ./ </br>
+Setup Run and Debug (Python > Django > Manage.py) </br>
+Press F5 to run local server </br>
+Terminal > git add . </br>
+Terminal > git commit -m "setting up virtual environment" </br>
+Select Python version in VSCode (lower right) Pipenv Python </br>
+Add an item </br>
 
 ### Create App
-python manage.py startapp inventory
-RecordStore settings.py > INSTALLED APPS > 'inventory'
-python manage.py makemigrations
-python manage.py migrate
+python manage.py startapp inventory </br>
+RecordStore settings.py > INSTALLED APPS > 'inventory' </br>
+python manage.py makemigrations </br>
+python manage.py migrate </br>
 
 
 ### Using the Database
